@@ -1,6 +1,6 @@
-function tabs() {
-    const tabContent = document.querySelectorAll('.tabcontent');
-    const tabItems = document.querySelectorAll('.tabheader__item');
+function tabs(tabsSelector, tabsContentSelector, activeClass) {
+    const tabContent = document.querySelectorAll(tabsContentSelector);
+    const tabItems = document.querySelectorAll(tabsSelector);
 
     function showTab(content, index) {
         content.forEach((tab) => {
@@ -10,19 +10,19 @@ function tabs() {
     }
 
     tabItems.forEach((item, index) => {
-        if (item.classList.contains('tabheader__item_active')) {
+        if (item.classList.contains(activeClass)) {
             showTab(tabContent, index);
         }
         
         item.addEventListener('click', () => {
-            if (item.classList.contains('tabheader__item_active')) {
+            if (item.classList.contains(activeClass)) {
                 showTab(tabContent, index);
             } else {
                 tabItems.forEach((i) => {
-                     i.classList.remove('tabheader__item_active');
+                     i.classList.remove(activeClass);
                 });
                
-               item.classList.add('tabheader__item_active');
+               item.classList.add(activeClass);
 
                showTab(tabContent, index);
            }
@@ -30,4 +30,4 @@ function tabs() {
     });
 }
 
-module.exports = tabs;
+export default tabs;

@@ -118,4 +118,4 @@ function calculating() {
     calcTotal();
 }
 
-module.exports = calculating;
+export default calculating;

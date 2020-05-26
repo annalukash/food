@@ -1,7 +1,10 @@
-function form() {
-    const forms = document.querySelectorAll('form');
+import {closeModal, openModal} from './modal-window';
+import {postData} from '../services/services';
+
+function form(formSelector) {
+    const forms = document.querySelectorAll(formSelector);
     const message = {
-        loading: './original.svg',
+        loading: './spiner.svg',
         success: 'Спасибо! Скоро мы с вами свяжемся!',
         failure: 'Что-то пошло не так'
     };
@@ -9,18 +12,6 @@ function form() {
     forms.forEach((item) => {
         bindPostData(item);
     });
-
-    const postData = async (url, data) => {
-        const result = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: data
-        });
-
-        return await result.json();
-    };
 
     function bindPostData(form) {
         form.addEventListener('submit', (event) => {
@@ -79,4 +70,4 @@ function form() {
         .then(res => console.log(res));
 }
 
-module.exports = form;
+export default form;
